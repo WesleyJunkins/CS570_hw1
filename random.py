@@ -16,31 +16,32 @@ class TurtleController(Node):
         msg.angular.z = angular_z
         return msg
 
+    # This shape is supposed to be a W shape, but it ended up looking like two upside down triangles
     def get_twist_msg(self):
         if self.time < 5:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         elif self.time >= 5 and self.time < 10:
-            msg = self.create_twist(0.0, -1.2)
+            msg = self.create_twist(0.0, -1.2) # Rotate clockwise by 1.2 radians
         elif self.time >= 10 and self.time < 15:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         elif self.time >= 15 and self.time < 20:
-            msg = self.create_twist(0.0, -1.2)
+            msg = self.create_twist(0.0, -1.2) # Rotate clockwise by 1.2 radians
         elif self.time >= 20 and self.time < 25:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         elif self.time >= 25 and self.time < 30:
-            msg = self.create_twist(0.0, 1.2)
+            msg = self.create_twist(0.0, 1.2) # Rotate counterclockwise by 1.2 radians
         elif self.time >= 30 and self.time < 35:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         elif self.time >= 35 and self.time < 40:
-            msg = self.create_twist(0.0, -1.2)
+            msg = self.create_twist(0.0, -1.2) # Rotate clockwise by 1.2 radians
         elif self.time >= 40 and self.time < 45:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         elif self.time >= 45 and self.time < 50:
-            msg = self.create_twist(0.0, -1.2)
+            msg = self.create_twist(0.0, -1.2) # Rotate clockwise by 1.2 radians
         elif self.time >= 50 and self.time < 55:
-            msg = self.create_twist(1.0, 0.0)
+            msg = self.create_twist(1.0, 0.0) # Move forward
         else:
-            msg = self.create_twist(0.0, 0.0)
+            msg = self.create_twist(0.0, 0.0) # Stop
         return msg
     
     def timer_callback(self):
@@ -56,9 +57,6 @@ def main(args=None):
 
     rclpy.spin(turtle_controller)
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     turtle_controller.destroy_node()
     rclpy.shutdown()
 

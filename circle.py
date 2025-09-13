@@ -16,13 +16,15 @@ class TurtleController(Node):
         msg.angular.z = angular_z
         return msg
 
+    # Make a circle
+    # Uses modular arithmetic to move forward on even times and rotate on odd times
     def get_twist_msg(self):
         if self.time >= 199:
-            msg = self.create_twist(0.0, 0.0)
+            msg = self.create_twist(0.0, 0.0) # Stop after completing the circle
         elif self.time % 2 == 0:
-            msg = self.create_twist(0.5, 0.0)
+            msg = self.create_twist(0.5, 0.0) # Move forward
         else:
-            msg = self.create_twist(0.0, 0.2)
+            msg = self.create_twist(0.0, 0.2) # Rotate slightly
         return msg
     
     def timer_callback(self):
@@ -38,9 +40,6 @@ def main(args=None):
 
     rclpy.spin(turtle_controller)
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     turtle_controller.destroy_node()
     rclpy.shutdown()
 

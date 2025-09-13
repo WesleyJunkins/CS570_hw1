@@ -16,25 +16,29 @@ class TurtleController(Node):
         msg.angular.z = angular_z
         return msg
 
+    # Make a diamond
+    # All edges are the same length
+    # Two rotations are 0.3 rads (0.6 for the opposite angle because we are not starting off on a horizontal plane)
+    # Two other rotations are 1.25 radians
     def get_twist_msg(self):
         if self.time < 5:
-            msg = self.create_twist(0.0, 0.3)
+            msg = self.create_twist(0.0, 0.3) # Rotate counterclockwise by 0.3 radians
         elif self.time >= 5 and self.time < 10:
-            msg = self.create_twist(1.5, 0.0)
+            msg = self.create_twist(1.5, 0.0) # Move forward
         elif self.time >= 10 and self.time < 15:
-            msg = self.create_twist(0.0, 1.25)
+            msg = self.create_twist(0.0, 1.25) # Rotate counterclockwise by 1.25 radians
         elif self.time >= 15 and self.time < 20:
-            msg = self.create_twist(1.5, 0.0)
+            msg = self.create_twist(1.5, 0.0) # Move forward
         elif self.time >= 20 and self.time < 25:
-            msg = self.create_twist(0.0, 0.6)
+            msg = self.create_twist(0.0, 0.6) # Rotate counterclockwise by 0.6 radians
         elif self.time >= 25 and self.time < 30:
-            msg = self.create_twist(1.5, 0.0)
+            msg = self.create_twist(1.5, 0.0) # Move forward
         elif self.time >= 30 and self.time < 35:
-            msg = self.create_twist(0.0, 1.25)
+            msg = self.create_twist(0.0, 1.25) # Rotate counterclockwise by 1.25 radians
         elif self.time >= 35 and self.time < 40:
-            msg = self.create_twist(1.5, 0.0)
+            msg = self.create_twist(1.5, 0.0) # Move forward
         else:
-            msg = self.create_twist(0.0, 0.0)
+            msg = self.create_twist(0.0, 0.0) # Stop
         return msg
     
     def timer_callback(self):
@@ -50,9 +54,6 @@ def main(args=None):
 
     rclpy.spin(turtle_controller)
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     turtle_controller.destroy_node()
     rclpy.shutdown()
 
